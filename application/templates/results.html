@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block main %}
+    <div>
+        <h1>Your Results</h1>
+    </div>
+
+    <!--Results of the quiz-->
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">CORRECT</th>
+                    <th scope="col" class="wrong">INCORRECT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td class="correct"> Correct Answers</td>
+                <td class="wrong">Wrong Answers</td>
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <!--User can navigate back to start page, or to summary page-->
+    <form>
+        <button type="submit" class="btn btn-light" formaction="/start">Restart</button>
+        <button type="submit" class="btn btn-light" formaction="/summary">See Quiz Summary</button>
+    </form>
+    </div>
+
+    {% endblock %}
