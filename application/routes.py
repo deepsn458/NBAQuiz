@@ -1,19 +1,28 @@
-from models import User
-
+from application.models import User
+from flask import render_template, url_for, request, redirect, flash
+# Forms
+from application.forms import RegistrationForm, LoginForm
+from application import app, db, bcrypt
+from flask_login import login_user, current_user, logout_user, login_required
 # main page
 @app.route("/", methods=["GET", "POST"])
 def home():
-
-    #if user is not logged in, return the home.html
-    if request.method == 'GET':
-        return render_template("home.html")
+    return render_template("home.html")
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
     form = RegistrationForm()
     # if registration is successful, redirect to login page
     if form.validate_on_submit():
-        flash("Registration successful!","success")
+         #hashes password to store in database
+        hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+
+        #creates a new user
+        user = User(username=form.username.data, password=hashed_pw)
+        db.session.add(user)
+        db.session.commit()
+
+        flash(f"Registration successful for {form.username.data}","success")
         return redirect("/login")
     return render_template("register.html", form=form)
         
@@ -25,8 +34,15 @@ def login():
     form = LoginForm()
     # if login is succesful, redirect to home page via post
     if form.validate_on_submit():
-        flash(f"Welcome back {form.username.data}", "success")
-        return redirect("/")
+        # checks if username is correct
+        user = User.query.filter_by(username=form.username.data).first()
+        # checks if entered password matches user's actual password
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember.data)
+            flash(f"Welcome back {form.username.data}", "success")
+            return redirect("/")
+        else:
+            flash("Login Unsuccesful, check username and password")
     return render_template("login.html", form=form)
 
     return render_template("login.html")
@@ -47,3 +63,14 @@ def results():
 @app.route("/summary")
 def summary():
     return render_template("summary.html")
+
+@app.route("/stats")
+def stats():
+    return render_template("stats.html")
+    
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    # returns user to login page
+    return redirect("/login")
