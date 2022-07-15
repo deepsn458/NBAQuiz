@@ -17,7 +17,9 @@
         <form>
             <div class="mb-3">
                 <button type="submit" class="btn btn-light" formaction="/start">PLAY!</button>
-                <button type="submit" class="btn btn-light" formaction="/login"> LOG IN</button>
+                {% if not current_user.is_authenticated %}
+                    <button type="submit" class="btn btn-light" formaction="/login"> LOG IN</button>
+                {% endif %}
             </div>
         </form>
     </div>

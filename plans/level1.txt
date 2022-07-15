@@ -65,14 +65,21 @@ Req 5: - Username field: Checks if user alr registered
         Confirm Password field: Checks if passwords match
         Errors to be displayed upon submission
         Redirect to login page if successful, alert showing login successful
+
 Spec 5 :- Validation handled with wtforms validation in flask. Display them correctly with Jinja2
         - Redirection and alerts handled by flask, display with html
 
 /login
 Req 6: - Username field: - checks if username matches a username in the database
         Password: Checks if password matches password associated with the username
-Spec 6: - Comparing form with sql database handled by Flask
+        - When user logs in, should redirect them back to home page
+        - Login and Register links should be replaced by logout and statistics links
 
+Spec 6: - Comparing form with sql database handled by Flask
+        - home page should check if user is logged in (flask-login) and render new template with Jinja2
+
+/home
+Req 7 (additional): - is user is logged in, only display the play button
 Plan
 1) Learn how to operate VSCode locally and sync using git (DONE!)
 2) Set up SSH key to submit project  (Done!)

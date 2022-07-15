@@ -1,18 +1,25 @@
+#cInitializes and ties everything together for the application
+
 # where application is initialized
-from flask import Flask, render_template, url_for, request, redirect, flash
+from flask import Flask
 # To use Sass compiler
 from flask_assets import Environment, Bundle
 #sqlalchemy
 from flask_sqlalchemy import SQLAlchemy
-# Forms
-from forms import RegistrationForm, LoginForm
+from flask_bcrypt import Bcrypt
+from flask_login import LoginManager
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] ='5e5d7fe67000e6af38191fdf09f998da'
 #sqlite3 database
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///quiz.db'
 db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
+login_manager=LoginManager(app)
+login_manager.login_view = 'login'
 
+from application import routes
 
 # setting up sass compiler
 assets     = Environment(app)
