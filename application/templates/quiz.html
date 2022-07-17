@@ -15,15 +15,24 @@
         <thead>
             <tr>
                 <!--Each time q is retrieved, it is updated in a new database for user -->
-                <th col-span="2" scope="col" style="text-align: center;">Question</th>
+                <th col-span="2" scope="col" style="text-align: center;">{{q.question_name}}</th>
             </tr>
         </thead>
         <!--Each click of the button updates database-->
         <tbody>
             <tr> 
-                <td><button type="submit" class="btn btn-light">Option A</button></td>
-                <td><button type="submit" class="btn btn-light">Option B</button></td>
+                <form action="/quiz" method="post">
+                    <!--Randomely assigns the correct option to any of the buttons-->
+                    {% if btn_id == 0 %}
+                    <td><button type="submit" class="btn btn-light" name="response" value="{{o1.id}}">{{o1.option_name}}</button></td>
+                    <td><button type="submit" class="btn btn-light" name="response" value="{{o2.id}}">{{o2.option_name}}</button></td>
+                    {% else %}
+                    <td><button type="submit" class="btn btn-light" name="response" value="{{o2.id}}">{{o2.option_name}}</button></td>
+                    <td><button type="submit" class="btn btn-light" name="response" value="{{o1.id}}">{{o1.option_name}}</button></td>
+                    {% endif %}
+                </form>
             </tr>
+
         </tbody>
     </table>
 
