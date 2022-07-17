@@ -7,6 +7,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 import csv
 import random
 from sqlalchemy.sql import func
+from sqlalchemy.types import Boolean
 
 # main page
 @app.route("/", methods=["GET", "POST"])
@@ -71,10 +72,11 @@ def start():
 @app.route("/quiz", methods=["GET", "POST"])
 def quiz():
     # Retrieve a question at random from the 'Questions' table
-    index = random.randint(0,20)
+    index = random.randint(1,20)
     q = Questions.query.filter_by(id=index, displayed=False).first()
-    # the same question won't be displayed again in the current quiz
+
     q.displayed = True
+    db.session.commit()
 
     # Selects the correct option for the question
     o1 = Options.query.filter_by(question_id=index, correct_incorrect=True).first()
@@ -103,13 +105,15 @@ def results():
     # Clears the responses table for the next quiz
     db.session.query(Responses).delete()
     db.session.commit()
+
+
+     # sets the displayed values for all the questions back to false
+    for i in range(1,21):
+        question = Questions.query.get(i)
+        question.displayed = False
+        db.session.commit()
     return render_template("results.html", total_correct=total_correct, total_incorrect=total_incorrect)
 
-    # sets the displayed values for all the questions back to false
-   # for i in range(20):
-        #question = Questions.query.get(i)
-        #question.displayed = False
-       # db.session.commit()
 
 @app.route("/summary")
 def summary():
