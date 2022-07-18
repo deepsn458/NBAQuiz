@@ -93,11 +93,11 @@ def quiz():
         db.session.commit()
 
         # return the results page when timer runs out
-        return redirect("/results")
+        return redirect("/quiz/results")
     else:
         return render_template("quiz.html", btn_id=btn_id, o1=o1, o2=o2, q=q)
 
-@app.route("/results")
+@app.route("/quiz/results")
 def results():
     # displays the number of correct and incorrect answers
     total_correct = Responses.query.filter_by(correct_incorrect=True).count()
@@ -115,7 +115,7 @@ def results():
     return render_template("results.html", total_correct=total_correct, total_incorrect=total_incorrect)
 
 
-@app.route("/summary")
+@app.route("/quiz/summary")
 def summary():
     return render_template("summary.html")
 

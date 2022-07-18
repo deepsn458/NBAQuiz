@@ -87,7 +87,7 @@ Plan
 4) Strengthen Python and Flask skills
 5) Design the basic structure of the web app using flask, css, html 
     app.py should be functional with all the necessary folders and routes (routes functionality can be filled out later) 
-6) Learn to implement database with SQLAlchemy
-7) Design the quiz database
+6) Learn to implement database with SQLAlchemy (done)
+7) Design the quiz database (done)
 10) Strengthen JavaScript Skills 
 11) Add the necessary JS elements to enhance webpage
