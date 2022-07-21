@@ -28,8 +28,8 @@
     <div>
         <!--User can navigate back to start page, or to summary page-->
     <form>
-        <button type="submit" class="btn btn-light" formaction="/start">Restart</button>
-        <button type="submit" class="btn btn-light" formaction="/summary">See Quiz Summary</button>
+        <button type="submit" class="btn btn-light" formaction="{{ url_for('main.start') }}">Restart</button>
+        <button type="submit" class="btn btn-light" formaction="{{ url_for('Quiz.summary') }}">See Quiz Summary</button>
     </form>
     </div>
 

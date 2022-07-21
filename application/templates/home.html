@@ -16,9 +16,9 @@
              else display only the "Play" button-->
         <form>
             <div class="mb-3">
-                <button type="submit" class="btn btn-light" formaction="/start">PLAY!</button>
+                <button type="submit" class="btn btn-light" formaction="{{ url_for('main.start') }}">PLAY!</button>
                 {% if not current_user.is_authenticated %}
-                    <button type="submit" class="btn btn-light" formaction="/login"> LOG IN</button>
+                    <button type="submit" class="btn btn-light" formaction="{{ url_for('users.login') }}"> LOG IN</button>
                 {% endif %}
             </div>
         </form>

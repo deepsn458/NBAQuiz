@@ -1,4 +1,4 @@
-#cInitializes and ties everything together for the application
+# Initializes and ties everything together for the application
 
 # where application is initialized
 from flask import Flask
@@ -8,27 +8,39 @@ from flask_assets import Environment, Bundle
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
+from application.config import Config
+#creation of extension objects
+db = SQLAlchemy()
+bcrypt = Bcrypt()
+login_manager=LoginManager()
+login_manager.login_view = 'users.login'
 
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(Config)
+    # imports all the 3 blueprints
+    from application.users.routes import users
+    from application.main.routes import main
+    from application.quiz.routes import Quiz
+    from application.errors.handlers import errors
+    app.register_blueprint(users)
+    app.register_blueprint(main)
+    app.register_blueprint(Quiz)
+    app.register_blueprint(errors)
+    # extension objects applied to each application
+    db.init_app(app)
+    bcrypt.init_app(app)
+    login_manager.init_app(app)
+    # setting up sass compiler
+    assets     = Environment(app)
+    assets.url = app.static_url_path
+    scss       = Bundle('style.scss', filters='pyscss', output='all.css')
+    assets.config['SECRET_KEY'] = 'secret!'
+    assets.config['PYSCSS_LOAD_PATHS'] = assets.load_path
+    assets.config['PYSCSS_STATIC_URL'] = assets.url
+    assets.config['PYSCSS_STATIC_ROOT'] = assets.directory
+    assets.config['PYSCSS_ASSETS_URL'] = assets.url
+    assets.config['PYSCSS_ASSETS_ROOT'] = assets.directory
+    assets.register('scss_all', scss)
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] ='5e5d7fe67000e6af38191fdf09f998da'
-#sqlite3 database
-app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///quiz.db'
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
-login_manager=LoginManager(app)
-login_manager.login_view = 'login'
-
-from application import routes
-
-# setting up sass compiler
-assets     = Environment(app)
-assets.url = app.static_url_path
-scss       = Bundle('style.scss', filters='pyscss', output='all.css')
-assets.config['SECRET_KEY'] = 'secret!'
-assets.config['PYSCSS_LOAD_PATHS'] = assets.load_path
-assets.config['PYSCSS_STATIC_URL'] = assets.url
-assets.config['PYSCSS_STATIC_ROOT'] = assets.directory
-assets.config['PYSCSS_ASSETS_URL'] = assets.url
-assets.config['PYSCSS_ASSETS_ROOT'] = assets.directory
-assets.register('scss_all', scss)
+    return app
