@@ -21,7 +21,7 @@
         <!--Each click of the button updates database-->
         <tbody>
             <tr> 
-                <form action="/quiz" method="post">
+                <form action="{{url_for('Quiz.quiz')}}" method="post">
                     <!--Randomely assigns the correct option to any of the buttons-->
                     {% if btn_id == 0 %}
                     <td><button type="submit" class="btn btn-light" name="response" value="{{o1.id}}">{{o1.option_name}}</button></td>
