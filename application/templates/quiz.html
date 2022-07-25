@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block main %}
+<script src="{{ url_for('static', filename='quiz.js') }}"></script>
     <!--Timer will go here, after it runs out, auto redirect to /results-->
     <div id="timer">
         <h1>Timer</h1>
