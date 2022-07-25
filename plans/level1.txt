@@ -89,5 +89,6 @@ Plan
     app.py should be functional with all the necessary folders and routes (routes functionality can be filled out later) 
 6) Learn to implement database with SQLAlchemy (done)
 7) Design the quiz database (done)
+8) COmplete application structure (Blueprints) (Done)
 10) Strengthen JavaScript Skills 
 11) Add the necessary JS elements to enhance webpage

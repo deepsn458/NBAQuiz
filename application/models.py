@@ -5,7 +5,7 @@ from flask_login import UserMixin
 class Questions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     question_name = db.Column(db.Text, nullable=False)
-    displayed = db.Column(db.Boolean, default=False)
+    displayed = db.Column(db.Integer)
     #to link each option to its question
     options = db.relationship('Options', backref='questions', lazy=True)
     # to retrieve question from responses table

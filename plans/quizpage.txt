@@ -1,7 +1,9 @@
 Level 1 ( only quiz)
 Can be implemented without 'login' features
 Quiz features
-Req 1:- Retrieve a question at random
+
+Req 1: When user clicks a start button, the quiz page is loaded and timer is immediately started
+
 Req 2:- Retrieve two options for the question 
       - Total 4 options for the question
       - Option 1: correct option
@@ -13,16 +15,20 @@ Req 4: When button is clicked:
             - +1 added to "correct answers
         - else
             - +1 added to wrong answers
-Req 5: New question should be loaded (using JS)
+Req 5: New question should be loaded 
         - The loaded question cannot be the same as any previous question
 
-Specification (Only 1 webpage, no JS)
-1) Retrieve a question at random from question table and set displayed to true
-    q = Questions.query.filter_by(id=random.randInt(0,n), displayed=False)
-    q.displayed = true
-2) Select correct option that has same question id as question
+Specification (With AJAX)
+1) When page is loaded, 60 second timer will be activated. (JS)
+    - Time will not reset even if page is reloaded
+2) request will be sent to receive the question and options from the database (AJAX)
+
+(PYTHON)
+2) Retrieve a question at random from question table and set displayed to 1
+    
+3) Select correct option that has same question id as question
     o1 = Options.query.filter_by(question_id= q.id, correct_incorrect=True).first()
-3) Select incorrect option at random, that has same question id as question
+4) Select incorrect option at random, that has same question id as question
     Inefficient version:
         int = randInt(0,2)
         if int == 0: 
@@ -35,35 +41,38 @@ Specification (Only 1 webpage, no JS)
     Efficient version (may not work):
         o2 =  Options.query.filter_by(question_id=q.id, correct_incorrect=false).order_by(func.random()).limit(1)
         
-4) Randomely assign both to a button
+5) Randomely assign both to a button
     btn_id = randInt(0,1);
     return btn_id, o1.option_name, and o2.option_name to template
     In template (With Jinja): if btn_id=0: 
                                 o1 in btn1, o2 in btn2
                               else:
                                 o1 in btn2, o2 in btn1
-5) button submits option when button is clicked 
+6) button submits option when button is clicked (JS)
     Both buttons are assigned a name of 'response'
     option = request.form.get('response')
-6)Retrieve submitted option and question and add them to the Responses table
+7)Retrieve submitted option and question and add them to the Responses table (Python)
     response = Responses(question_id=q.id, option_id=option.id, correct_incorrect=option.correct_incorrect)
     db.session.add(response)
-    db.session.commit(
-
-    )
+    db.session.commit()
+8) When button is pressed, another request for a question and options will be sent
+9) Repeat steps 2) to 8) until timer runs out
 At the end:
-9) Redirect the user to the results page
+9) When timer runs out, a request will be sent to go to the results page
+10) Redirect the user to the results page
     redirect("/results"
     )
-8) Get the sum of the correct and incorrect answers
+11) Get the sum of the correct and incorrect answers
     total_correct = Responses.query.filter_by(correct_incorrect=True);
     total_wrong = Responses.query.filter_by(correct_incorrect=False);
 
-9) Clears the responses table
+12) Clears the responses table
     db.session.query(Responses).delete()
     db.session.commit()
 
 
+
+Specification (Without AJAX)
 
 Level 2 (User can view summary of results)
 
