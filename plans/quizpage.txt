@@ -4,10 +4,15 @@ Quiz features
 
 Req 1: When user clicks a start button, the quiz page is loaded and timer is immediately started
 
-Req 2:- Retrieve two options for the question 
-      - Total 4 options for the question
-      - Option 1: correct option
-      - Option 2: 1/3 randomely selected from incorrect option
+
+Req 2:- Load all the questions into a list of dictionaries
+    For each dictionary: Retrieve the question and two options for the question 
+        - Total 4 options for the question
+        - Option 1: correct option
+        - Option 2: 1/3 randomely selected from incorrect option
+
+Req3: 
+
 Req3: Whether the correct option is at button A or Button B should be random
 Req 4: When button is clicked:
         - Value compared to correct option

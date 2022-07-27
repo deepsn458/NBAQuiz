@@ -8,7 +8,7 @@
 <script src="{{ url_for('static', filename='quiz.js') }}"></script>
     <!--Timer will go here, after it runs out, auto redirect to /results-->
     <div id="timer">
-        <h1>Timer</h1>
+        <h1></h1>
     </div>
 
     <!-- Displays the Question and the 2 options-->
@@ -16,21 +16,16 @@
         <thead>
             <tr>
                 <!--Each time q is retrieved, it is updated in a new database for user -->
-                <th col-span="2" scope="col" style="text-align: center;">{{q.question_name}}</th>
+                <th id="question" col-span="2" scope="col" style="text-align: center;"></th>
             </tr>
         </thead>
         <!--Each click of the button updates database-->
         <tbody>
             <tr> 
-                <form action="{{url_for('Quiz.quiz')}}" method="post">
-                    <!--Randomely assigns the correct option to any of the buttons-->
-                    {% if btn_id == 0 %}
-                    <td><button type="submit" class="btn btn-light" name="response" value="{{o1.id}}">{{o1.option_name}}</button></td>
-                    <td><button type="submit" class="btn btn-light" name="response" value="{{o2.id}}">{{o2.option_name}}</button></td>
-                    {% else %}
-                    <td><button type="submit" class="btn btn-light" name="response" value="{{o2.id}}">{{o2.option_name}}</button></td>
-                    <td><button type="submit" class="btn btn-light" name="response" value="{{o1.id}}">{{o1.option_name}}</button></td>
-                    {% endif %}
+                <form action="" method="">
+                    <!--Randomely assigns the correct option to any of the buttons-->              
+                    <td><button type="submit" class="btn btn-light" name="response" id="left"value=""></button></td>
+                    <td><button type="submit" class="btn btn-light" name="response" id="right"value=""></button></td>                    
                 </form>
             </tr>
 

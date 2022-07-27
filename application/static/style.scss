@@ -1,9 +1,10 @@
 table{
     .correct{
-        background-color: lightgreen;
+        background-color: hsla(120,100%,50%,0.3);
+
     }
     .wrong{
-        background-color: lightsalmon;
+        background-color: hsla(0,100%,50%,0.3);
     }
 }
 
