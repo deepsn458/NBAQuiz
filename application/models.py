@@ -18,7 +18,7 @@ class Questions(db.Model):
 class Options(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     option_name = db.Column(db.String(20), nullable=False)
-    correct_incorrect = db.Column(db.Boolean, default=False)
+    correct_incorrect = db.Column(db.Integer)
     #to link each option to its question
     question_id = db.Column(db.Integer, db.ForeignKey('questions.id'),
                             nullable=False)

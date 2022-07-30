@@ -31,7 +31,7 @@ function shortTimer() {
     }, 1000);
 }
 
-//Sends a request to retrieve a question
+//Sends a request to retrieve a list of all the questions
 function displayQuestions() {
 
    //sends request to quiz route

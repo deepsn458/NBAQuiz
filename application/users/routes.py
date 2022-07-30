@@ -27,11 +27,11 @@ def register():
 
 @users.route ("/temp")
 def temp():
-    with open ("Questions.csv","r") as questionsfile:
-        reader = csv.DictReader(questionsfile)
-        for q in reader:
-            q = Questions(question_name=q['Question Name'], displayed=q['displayed'])
-            db.session.add(q)
+    with open ("Options.csv","r") as optionsfile:
+        reader = csv.DictReader(optionsfile)
+        for o in reader:
+            o = Options(option_name=o['option'], correct_incorrect=o['correct_incorrect'], question_id=o['question_id'])
+            db.session.add(o)
             db.session.commit()
     return redirect(url_for('main.home'))
 

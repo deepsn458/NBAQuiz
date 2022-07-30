@@ -6,12 +6,11 @@ Req 1: When user clicks a start button, the quiz page is loaded and timer is imm
 
 
 Req 2:- Load all the questions into a list of dictionaries
-    For each dictionary: Retrieve the question and two options for the question 
+    Organize all questions into a list, in random order
+    For each dictionary: Retrieve a question and two options for the question 
         - Total 4 options for the question
         - Option 1: correct option
         - Option 2: 1/3 randomely selected from incorrect option
-
-Req3: 
 
 Req3: Whether the correct option is at button A or Button B should be random
 Req 4: When button is clicked:
@@ -26,41 +25,27 @@ Req 5: New question should be loaded
 Specification (With AJAX)
 1) When page is loaded, 60 second timer will be activated. (JS)
     - Time will not reset even if page is reloaded
-2) request will be sent to receive the question and options from the database (AJAX)
+2) request will be sent to receive the questions and options from the database (AJAX)
 
 (PYTHON)
-2) Retrieve a question at random from question table and set displayed to 1
-    
-3) Select correct option that has same question id as question
-    o1 = Options.query.filter_by(question_id= q.id, correct_incorrect=True).first()
-4) Select incorrect option at random, that has same question id as question
-    Inefficient version:
-        int = randInt(0,2)
-        if int == 0: 
-            o2 = Options.query.filter_by(question_id=q.id,correct_incorrect=False).first()
-        elif int == 1:
-            o2 = Options.query.filter_by(question_id=q.id, correct_incorrect=False).limit(2)[1]
-        else:
-            o2 = Options.query.filter_by(question_id=q.id, correct_incorrect=False).limit(3)[2]
-    
-    Efficient version (may not work):
-        o2 =  Options.query.filter_by(question_id=q.id, correct_incorrect=false).order_by(func.random()).limit(1)
-        
-5) Randomely assign both to a button
-    btn_id = randInt(0,1);
-    return btn_id, o1.option_name, and o2.option_name to template
-    In template (With Jinja): if btn_id=0: 
-                                o1 in btn1, o2 in btn2
-                              else:
-                                o1 in btn2, o2 in btn1
+2) Randomely orders all the questions and places them into a temporary list
+3) For each question there will be a dictionary with the question, option A, option B, button id  
+    a) Select correct option that has same question id as question
+        o1 = Options.query.filter_by(question_id= q.id, correct_incorrect=True).first()
+    b) Select incorrect option at random, that has same question id as question 
+        Efficient version (may not work):
+            o2 =  Options.query.filter_by(question_id=q.id, correct_incorrect=false).order_by(func.random()).limit(1)
+
+4) Append the dictionary to a new list 
+5) retrieveQuestions() will retrieve the list
+6) displayQuestion() Will choose the first dictionary
+5) Randomely assign both options to a button
 6) button submits option when button is clicked (JS)
-    Both buttons are assigned a name of 'response'
-    option = request.form.get('response')
 7)Retrieve submitted option and question and add them to the Responses table (Python)
     response = Responses(question_id=q.id, option_id=option.id, correct_incorrect=option.correct_incorrect)
     db.session.add(response)
     db.session.commit()
-8) When button is pressed, another request for a question and options will be sent
+8) When button is pressed, displayQuestion() will choose the next dictionary in the list
 9) Repeat steps 2) to 8) until timer runs out
 At the end:
 9) When timer runs out, a request will be sent to go to the results page

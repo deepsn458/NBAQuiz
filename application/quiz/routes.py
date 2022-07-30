@@ -21,8 +21,8 @@ def quiz():
 # Asynchronous queries for questions and options after button is clicked
 @Quiz.route("/query", methods=["GET", "POST"])
 def query():
-    
-    #sends question to quiz page and retrieves the option
+  
+ #sends question to quiz page and retrieves the option
     if request.method == "POST":
         response = request.get_json()
         print(response['answer'])
@@ -35,16 +35,20 @@ def query():
         db.session.add(resp)
         db.session.commit()
 
-    # Retrieve a question at random from the 'Questions' table
+    # Finds a question that has not yet been displayed
     index = random.randint(1,20)
-    q = Questions.query.filter_by(id=index).first()
+    q = Questions.query.get(index)
+    while q.displayed == 1:
+        index = random.randint(1,20)
+        q = Questions.query.get(index)
+
     q.displayed = 1
     db.session.commit()
 
+    # Randomely selects an incorrect option for the questiom
+    o2 =  Options.query.filter_by(question_id=index, correct_incorrect=False).order_by(func.random()).first()
     # Selects the correct option for the question
     o1 = Options.query.filter_by(question_id=index, correct_incorrect=True).first()
-    # Randomely selects an incorrect option for the questiom
-    o2 =  Options.query.filter_by(question_id=index, correct_incorrect=False).order_by(func.random()).limit(1).first()
     # random number to decide which button correct answer should be on
     btn_id = random.randint(0,1)
     req = {
@@ -56,8 +60,6 @@ def query():
     response = make_response(jsonify(req), 200)
     return response
     
-
-
 
    
 @Quiz.route("/quiz/results")
