@@ -18,7 +18,7 @@ class Questions(db.Model):
 class Options(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     option_name = db.Column(db.String(20), nullable=False)
-    correct_incorrect = db.Column(db.Boolean, default=False)
+    correct_incorrect = db.Column(db.Integer)
     #to link each option to its question
     question_id = db.Column(db.Integer, db.ForeignKey('questions.id'),
                             nullable=False)
@@ -35,7 +35,7 @@ class Responses(db.Model):
     option_id = db.Column(db.Integer, db.ForeignKey('options.id'),
                             nullable=False)
     #takes whether the chosen option was correct or not from the options table
-    correct_incorrect= db.Column(db.Boolean,default=False)
+    correct_incorrect= db.Column(db.Integer)
 
 
 @login_manager.user_loader

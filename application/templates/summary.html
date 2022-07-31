@@ -16,5 +16,30 @@
                 <th scope="col">Correct Response</th>
             </tr>
         </thead>
+        <tbody>
+            {% for row in table %}
+                {% if row.user_answer == row.correct_answer %}
+                    <tr class="correct">
+                        <td>{{ row.index }}</td>
+                        <td>{{ row.question }}</td>
+                        <td>{{ row.user_answer }}</td>
+                        <td>{{ row.correct_answer }}</td>
+                    </tr>
+                {% else %}
+                    <tr class="wrong">
+                        <td>{{ row.index }}</td>
+                        <td>{{ row.question }}</td>
+                        <td>{{ row.user_answer }}</td>
+                        <td>{{ row.correct_answer }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
     </table>
+
+    <form>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-light" formaction="{{ url_for('main.start') }}">Restart</button>
+        </div>
+    </form>
 {% endblock %}

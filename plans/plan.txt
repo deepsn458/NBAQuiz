@@ -2,15 +2,15 @@ Project Idea
 Build an NBA trivia game/quiz that is controlled using an Arduino
 
 Level 1: Sinmple web page with just the game
-    User will be redirected to a homepage where they can start the quiz
-    When the user presses start they wil be redirected to the quiz page
-    There will be a 60 second timer that starts as soon as they are redirected
-    A question will be displayed on screen along with two options
-    The user can select either option and a new question and two other options will be displayed
-    The number of wrong and correct answers will be tallied up
-    At the end of the 60 seconds a "Time is Up!" alert will be displayed
-    The user will be redirected to a page where the number of correct and wrong answers will be displayed
-    They can click a button that redirects them to a page which shows the qs they answered correctly and incorrectly
+    User will be redirected to a homepage where they can start the quiz (yes)
+    When the user presses start they wil be redirected to the quiz page(yes)
+    There will be a 60 second timer that starts as soon as they are redirected (yes)
+    A question will be displayed on screen along with two options (yes)
+    The user can select either option and a new question and two other options will be displayed (yes)
+    The number of wrong and correct answers will be tallied up (yes)
+    At the end of the 60 seconds a "Time is Up!" alert will be displayed (yes)
+    The user will be redirected to a page where the number of correct and wrong answers will be displayed (yes)
+    They can click a button that redirects them to a page which shows the qs they answered correctly and incorrectly (yes)
 
 Level 2: Play the game with an account, results are stored in a database
 Level 3: play against 1 more player
