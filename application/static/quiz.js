@@ -1,6 +1,6 @@
 $(document).ready(function() {
     //sets default value of timers
-    localStorage.setItem('60_second', 60);
+    localStorage.setItem('25_second', 25);
 
     //when page is loaded, function to start timer and display questions is called
     shortTimer();
@@ -16,8 +16,8 @@ $(document).ready(function() {
 //60 second timer
 function shortTimer() {
     const timer_id = setInterval(function(){
-        let time = localStorage.getItem('60_second');
-        //stops timer after 60 seconds and sends a request to redirect to the results page
+        let time = localStorage.getItem('25_second');
+        //stops timer after 25 seconds and sends a request to redirect to the results page
         if (time == 0) {
             clearInterval(timer_id);
             $("#timer").html("Time is Up!")
@@ -27,7 +27,7 @@ function shortTimer() {
         //updates timer
         $("#timer").html(time);
         time--;
-        localStorage.setItem('60_second',time);
+        localStorage.setItem('25_second',time);
     }, 1000);
 }
 
@@ -89,6 +89,12 @@ function sendResponse(id) {
 
         response.json()
         .then(function(data){
+            //if all questions have been answered, user is redirected to results page
+            if (data['response_count'] == data['question_count']) {
+                console.log("yuh");
+                finishQuiz();
+                return;
+            }
             //gets the question name 
             $("#question").html(data['question']);
 
@@ -111,7 +117,7 @@ function sendResponse(id) {
     })
 }
 
-//Sends request to redirect to results page after timer runs out
+//Sends request to redirect to results page after timer runs out or if all questions have been answered
 function finishQuiz() {
     fetch(`${window.origin}/quiz/results`)
     .then(function(response){

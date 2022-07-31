@@ -27,10 +27,10 @@ def register():
 
 @users.route ("/temp")
 def temp():
-    with open ("Options.csv","r") as optionsfile:
+    with open ("/mnt/c/Users/laz3r/documents/CS50/84109373/NBAQuiz/application/Questions.csv","r") as optionsfile:
         reader = csv.DictReader(optionsfile)
         for o in reader:
-            o = Options(option_name=o['option'], correct_incorrect=o['correct_incorrect'], question_id=o['question_id'])
+            o = Questions(question_name=o['Question Name'], displayed=o['displayed'])
             db.session.add(o)
             db.session.commit()
     return redirect(url_for('main.home'))

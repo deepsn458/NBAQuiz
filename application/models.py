@@ -35,7 +35,7 @@ class Responses(db.Model):
     option_id = db.Column(db.Integer, db.ForeignKey('options.id'),
                             nullable=False)
     #takes whether the chosen option was correct or not from the options table
-    correct_incorrect= db.Column(db.Boolean,default=False)
+    correct_incorrect= db.Column(db.Integer)
 
 
 @login_manager.user_loader

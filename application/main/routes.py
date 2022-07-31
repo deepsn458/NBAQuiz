@@ -19,7 +19,8 @@ def start():
     db.session.commit()
 
     # sets the displayed values for all the questions back to false
-    for i in range(1,21):
+    question_count = Questions.query.count() + 1
+    for i in range(1,question_count):
         question = Questions.query.get(i)
         question.displayed = 0
         db.session.commit()
