@@ -5,13 +5,6 @@ Quiz features
 Req 1: When user clicks a start button, the quiz page is loaded and timer is immediately started
 
 
-Req 2:- Load all the questions into a list of dictionaries
-    Organize all questions into a list, in random order
-    For each dictionary: Retrieve a question and two options for the question 
-        - Total 4 options for the question
-        - Option 1: correct option
-        - Option 2: 1/3 randomely selected from incorrect option
-
 Req3: Whether the correct option is at button A or Button B should be random
 Req 4: When button is clicked:
         - Value compared to correct option
@@ -21,32 +14,38 @@ Req 4: When button is clicked:
             - +1 added to wrong answers
 Req 5: New question should be loaded 
         - The loaded question cannot be the same as any previous question
+Req:6 when time runs out or when all questions are answered, user is redirected to results page
+    - How many questions answered correctly
+    - How many questions answered incorrectly
+Req 7: user can view summary of results
+    - Table:
+        - Question name
+        - Option selected
+        - Correct option
 
 Specification (With AJAX)
-1) When page is loaded, 60 second timer will be activated. (JS)
+1) When page is loaded, 25 second timer will be activated. (JS)
     - Time will not reset even if page is reloaded
 2) request will be sent to receive the questions and options from the database (AJAX)
 
 (PYTHON)
-2) Randomely orders all the questions and places them into a temporary list
+2) Selects question at random that has not been selected before
 3) For each question there will be a dictionary with the question, option A, option B, button id  
     a) Select correct option that has same question id as question
         o1 = Options.query.filter_by(question_id= q.id, correct_incorrect=True).first()
     b) Select incorrect option at random, that has same question id as question 
         Efficient version (may not work):
             o2 =  Options.query.filter_by(question_id=q.id, correct_incorrect=false).order_by(func.random()).limit(1)
-
-4) Append the dictionary to a new list 
-5) retrieveQuestions() will retrieve the list
-6) displayQuestion() Will choose the first dictionary
+4) The dictionary is sent as a response, question is marked as answered
+    - q.displayed = 1
 5) Randomely assign both options to a button
 6) button submits option when button is clicked (JS)
 7)Retrieve submitted option and question and add them to the Responses table (Python)
     response = Responses(question_id=q.id, option_id=option.id, correct_incorrect=option.correct_incorrect)
     db.session.add(response)
     db.session.commit()
-8) When button is pressed, displayQuestion() will choose the next dictionary in the list
-9) Repeat steps 2) to 8) until timer runs out
+8) When button is pressed, another request for the dictionary is sent
+9) Repeat steps 2) to 8) until timer runs out or no more questions
 At the end:
 9) When timer runs out, a request will be sent to go to the results page
 10) Redirect the user to the results page
@@ -55,15 +54,14 @@ At the end:
 11) Get the sum of the correct and incorrect answers
     total_correct = Responses.query.filter_by(correct_incorrect=True);
     total_wrong = Responses.query.filter_by(correct_incorrect=False);
-
-12) Clears the responses table
+12) User can access summary table
+    - Redirects user to /summary
+    - takes data from the Responses Table
+    - The table is stored in a list of dictionaries
+    - Each dictionary is a row in the database (with names of questions and options instead of the id)
+13) When user restarts quiz, Responses are deleted and all questions marked as unanswered
     db.session.query(Responses).delete()
     db.session.commit()
 
 
-
-Specification (Without AJAX)
-
-Level 2 (User can view summary of results)
-
-Level 3 (User's statistics are tracked)
+Level 2 (User's stats are tracked)

@@ -1,16 +1,12 @@
 Project Requirements and Project Specifications (What hardware and software will you need to meet the requirements?)
-Level 1: If unable to implement 'login' features, omit from the form elements
+Level 1
 
 
 /home
 Req 1: Is users visit homepage via GET request
-        - Nav bar where users can register or log in
-        - An alert that tells users to login in to save their stats
+        - Nav bar where users can go to home page
         - A button that user can click to play the game
-        - A button that user can click to login
-Spec 1: - Nav Bar with Bootstrap. /register and /login working with flask
-        - Alert with Bootstrap Flask, Jinja: shows alert if GET request sent
-        - Form element using html. /quiz and /login working with flask
+Spec 1: - Nav Bar with Bootstrap.
 
 
 /start
@@ -22,7 +18,7 @@ Spec 2:
         - Form element with html, /quiz working with flask
 
 /quiz
-Req 2:  - 60 second timer that starts when page is loaded
+Req 2:  - 25 second timer that starts when page is loaded
         -    Question displayed with two options below
         -   when option is clicked: +1 is added to number of right or wrong answers AND new question and options are displayed
         -   Once timer runs out: Automatically redirected to another webpage
@@ -52,43 +48,18 @@ Spec 4: - Database created for user responses in /quiz is used (retrieved from S
             - If user answer is marked wrong, row colored red (Logic handled by SQL, implemented on HTML)
         - Routes for /start working with Flask
 
-
-
-Level 2: Full implementation: with 'login' features
-
-create a new python file for registration and login forms
-
-/register
-Req 5: - Username field: Checks if user alr registered
-                         Checks if name between 1 and 20 chars
-        Password field: Checks if password has atleast 1 number and 1 letter and is between 1 and 20 chars
-        Confirm Password field: Checks if passwords match
-        Errors to be displayed upon submission
-        Redirect to login page if successful, alert showing login successful
-
-Spec 5 :- Validation handled with wtforms validation in flask. Display them correctly with Jinja2
-        - Redirection and alerts handled by flask, display with html
-
-/login
-Req 6: - Username field: - checks if username matches a username in the database
-        Password: Checks if password matches password associated with the username
-        - When user logs in, should redirect them back to home page
-        - Login and Register links should be replaced by logout and statistics links
-
-Spec 6: - Comparing form with sql database handled by Flask
-        - home page should check if user is logged in (flask-login) and render new template with Jinja2
-
-/home
-Req 7 (additional): - is user is logged in, only display the play button
 Plan
 1) Learn how to operate VSCode locally and sync using git (DONE!)
 2) Set up SSH key to submit project  (Done!)
 3) Strengthen HTML, CSS skills (CS50 web) (Done!)
 4) Strengthen Python and Flask skills
-5) Design the basic structure of the web app using flask, css, html 
+5) Design the basic structure of the web app using flask, css, html (done)
     app.py should be functional with all the necessary folders and routes (routes functionality can be filled out later) 
 6) Learn to implement database with SQLAlchemy (done)
 7) Design the quiz database (done)
 8) COmplete application structure (Blueprints) (Done)
-10) Strengthen JavaScript Skills 
-11) Add the necessary JS elements to enhance webpage
+10) Strengthen JavaScript Skills  (Done)
+11) Add the necessary JS elements to enhance webpage (done)
+12) Plan and implement the styling of all the webpages
+13) Learn the necessary testing methods and test the functionality of the website
+14) Deployment!
