@@ -1,4 +1,20 @@
 $(document).ready(function() {
+
+    document.querySelector('.title').style.animationPlayState = 'paused';
+
+    //when the buttons are hovered on, the inner text will change color to red
+    let buttons = document.querySelectorAll('button');
+    buttons.forEach(function(button) {
+        button.addEventListener("mouseover", function() {
+            button.style.color = "red";
+        })     
+    })
+    buttons.forEach(function(button) {
+        button.addEventListener("mouseout", function() {
+            button.style.color = "black";
+        })
+    })
+    
     //sets default value of timers
     localStorage.setItem('25_second', 25);
 
@@ -13,7 +29,7 @@ $(document).ready(function() {
    })  
 })
 
-//60 second timer
+//25 second timer
 function shortTimer() {
     const timer_id = setInterval(function(){
         let time = localStorage.getItem('25_second');
@@ -23,6 +39,12 @@ function shortTimer() {
             $("#timer").html("Time is Up!")
             finishQuiz();
             return;
+        }
+
+        //timer will turn red and bob in the last 5 seconds
+        if (time <= 5) {
+            document.querySelector('.title').style.color = "red";
+            document.querySelector('.title').style.animationPlayState = 'running';
         }
         //updates timer
         $("#timer").html(time);

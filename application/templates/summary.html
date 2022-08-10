@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block main %}
-
+    <script src="{{ url_for('static', filename='results-summary.js') }}"></script>
 <!--Info from user's quiz database is retrieved and displayed as a table-->
-    <table class="table">
+    <table class="table" id="summary">
         <thead>
             <tr>
                 <th scope="col">#</th>

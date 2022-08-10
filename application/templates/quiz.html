@@ -7,29 +7,32 @@
 {% block main %}
 <script src="{{ url_for('static', filename='quiz.js') }}"></script>
     <!--Timer will go here, after it runs out, auto redirect to /results-->
-    <div id="timer">
-        <h1></h1>
+    <div class="heading">
+        <div class="title" id="timer">
+            <h1></h1>
+        </div>
+    
+        <!-- Displays the Question and the 2 options-->
+        <div class="align">
+            <table>
+                <thead>
+                    <tr>
+                        <!--Each time q is retrieved, it is updated in a new database for user -->
+                        <th id="question" colspan="2" scope="col"></th>
+                    </tr>
+                </thead>
+                <!--Each click of the button updates database-->
+                <tbody>
+                    <tr> 
+                        <form action="" method="">
+                            <!--Randomely assigns the correct option to any of the buttons-->              
+                            <td><button type="submit" class="btn btn-light" name="response" id="left"value=""></button></td>
+                            <td><button type="submit" class="btn btn-light" name="response" id="right"value=""></button></td>                    
+                        </form>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-
-    <!-- Displays the Question and the 2 options-->
-    <table class="table">
-        <thead>
-            <tr>
-                <!--Each time q is retrieved, it is updated in a new database for user -->
-                <th id="question" col-span="2" scope="col" style="text-align: center;"></th>
-            </tr>
-        </thead>
-        <!--Each click of the button updates database-->
-        <tbody>
-            <tr> 
-                <form action="" method="">
-                    <!--Randomely assigns the correct option to any of the buttons-->              
-                    <td><button type="submit" class="btn btn-light" name="response" id="left"value=""></button></td>
-                    <td><button type="submit" class="btn btn-light" name="response" id="right"value=""></button></td>                    
-                </form>
-            </tr>
-
-        </tbody>
-    </table>
 
     {% endblock %}

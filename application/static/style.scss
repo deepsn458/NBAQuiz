@@ -1,21 +1,122 @@
-// importing fonts from google
-@import url('https//fonts.googleapis.com/css?family=Bungee&display=swap');
+//defines the standard colors
+$background-color: rgb(69, 103, 237);
+$wrong-color: hsla(0,100%,50%,1);
+$correct-color: hsla(120,100%,50%,1);
 
-//background image
-#homepage{
-    background-image: url('/NBAQuiz_images/Background.jpg');
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+//general layout
+#homepage {
+    background-color: $background-color;
+    color: white;
+    font-family: "Bungee";
+}
+
+//buttons
+.button {
+    width:200px;
+    height:auto;
+    align-self: center;
+    color:white;
+}
+
+.heading {
+    padding-top: 200px;
+}
+
+//aligns the table to the center of the page
+.align {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    table{
+        table-layout: auto;
+        width: 100%;
+        thead {
+            th {
+                padding: 10px;
+                font-size: 30px;
+                width: 700px;
+                text-align: center;
+            }
+        }
+        tbody {
+            tr {
+                td {
+                    padding: 10px;
+                    align-content: center;
+                    font-size: 30px;
+                }
+            }
+        }
+        
+    }
+}
+
+#summary {
+    color: white;
+}
+
+.correct{
+    color: $correct-color;
+}
+.wrong{
+    color: $wrong-color;
+}
+
+//sets the size of the timer
+#timer {
+    font-size: 30px;
+    color: black;
+}
+
+//slowly makes the play button visiblr
+@keyframes entrance{
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+//animation for bobbing of home page logo
+@keyframes bobbing {
+    0% {
+        font-size: 30px;
+    }
+
+    50% {
+        font-size: 40px;
+    }
+
+    100% {
+        font-size: 30px;
+    }
+}
+
+.title{
+    animation-name: bobbing;
+    animation-duration: 1000ms;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
 
 }
 
-table{
-    .correct{
-        background-color: hsla(120,100%,50%,0.3);
-
-    }
-    .wrong{
-        background-color: hsla(0,100%,50%,0.3);
-    }
+input{
+    animation-name: entrance;
+    animation-duration: 3000ms;
+    animation-fill-mode: forwards;
 }
 
+//question and buttons fade in when loaded
 
+#question {
+    animation-name: entrance;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+}
+button {
+    animation-name: entrance;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+}

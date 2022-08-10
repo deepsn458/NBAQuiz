@@ -1,9 +1,81 @@
-@import url('https//fonts.googleapis.com/css?family=Bungee&display=swap'); 
-  #homepage {
-    background-image: url('/NBAQuiz_images/Background.jpg');
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; }
+#homepage {
+  background-color: #4567ed;
+  color: white;
+  font-family: "Bungee"; }
 
-    table .correct {
-      background-color: rgba(0, 255, 0, 0.3); }
-      table .wrong {
-        background-color: rgba(255, 0, 0, 0.3); }
+  .button {
+    width: 200px;
+    height: auto;
+    align-self: center;
+    color: white; }
+
+    .heading {
+      padding-top: 200px; }
+
+      .align {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white; }
+        .align table {
+          table-layout: auto;
+          width: 100%; }
+          .align table thead th {
+            padding: 10px;
+            font-size: 30px;
+            width: 700px;
+            text-align: center; }
+          .align table tbody tr td {
+            padding: 10px;
+            align-content: center;
+            font-size: 30px; }
+
+#summary {
+  color: white; }
+
+  .correct {
+    color: lime; }
+
+    .wrong {
+      color: red; }
+
+      #timer {
+        font-size: 30px;
+        color: black; }
+
+        @keyframes entrance {
+          0% {
+            opacity: 0;   }
+            100% {
+              opacity: 1;   }
+}
+
+@keyframes bobbing {
+  0% {
+    font-size: 30px;   }
+    50% {
+      font-size: 40px;   }
+      100% {
+        font-size: 30px;   }
+}
+
+.title {
+  animation-name: bobbing;
+  animation-duration: 1000ms;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite; }
+
+  input {
+    animation-name: entrance;
+    animation-duration: 3000ms;
+    animation-fill-mode: forwards; }
+
+    #question {
+      animation-name: entrance;
+      animation-duration: 500ms;
+      animation-fill-mode: forwards; }
+
+      button {
+        animation-name: entrance;
+        animation-duration: 500ms;
+        animation-fill-mode: forwards; }

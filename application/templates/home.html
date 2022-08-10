@@ -5,18 +5,19 @@
 {% endblock %}
 
 {% block main %}
+<script src="{{ url_for('static', filename='home.js') }}"></script>
     <!--Insert NBA Quiz logo here-->
-    <div>
-        <h1 class="heading">YOOO</h1>
+    <div class="heading">
+        <h1 class="title">QUICKFIRE NBA QUIZ!</h1>
     </div>
     
     <!--Insert buttons to play quiz/login-->
     <div>
         <!--If user is not logged in display both buttons,
              else display only the "Play" button-->
-        <form>
+        <form action="{{ url_for('main.start') }}">
             <div class="mb-3">
-                <button type="submit" class="btn btn-light" formaction="{{ url_for('main.start') }}">PLAY!</button>
+                <input class="button" type="image" src="{{ url_for('static', filename='NBAQuiz_images/play.jpg') }}" alt="click to play">
             </div>
         </form>
     </div>
