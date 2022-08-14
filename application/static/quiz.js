@@ -1,4 +1,20 @@
 $(document).ready(function() {
+
+    document.querySelector('.title').style.animationPlayState = 'paused';
+
+    //when the buttons are hovered on, the inner text will change color to red
+    let buttons = document.querySelectorAll('button');
+    buttons.forEach(function(button) {
+        button.addEventListener("mouseover", function() {
+            button.style.color = "goldenrod";
+        })     
+    })
+    buttons.forEach(function(button) {
+        button.addEventListener("mouseout", function() {
+            button.style.color = "white";
+        })
+    })
+    
     //sets default value of timers
     localStorage.setItem('25_second', 25);
 
@@ -13,7 +29,7 @@ $(document).ready(function() {
    })  
 })
 
-//60 second timer
+//25 second timer
 function shortTimer() {
     const timer_id = setInterval(function(){
         let time = localStorage.getItem('25_second');
@@ -23,6 +39,12 @@ function shortTimer() {
             $("#timer").html("Time is Up!")
             finishQuiz();
             return;
+        }
+
+        //timer will turn red and bob in the last 5 seconds
+        if (time <= 5) {
+            document.querySelector('#timer').style.color = "red";
+            document.querySelector('#timer').style.animationPlayState = 'running';
         }
         //updates timer
         $("#timer").html(time);
@@ -68,7 +90,6 @@ function displayQuestions() {
 
 // sends the user's response to the responses database and gets back a new question
 function sendResponse(id) {
-    console.log($(`#${id}`).val());
     fetch(`${window.origin}/query`, {
         method: 'POST',
         headers: {
@@ -91,7 +112,6 @@ function sendResponse(id) {
         .then(function(data){
             //if all questions have been answered, user is redirected to results page
             if (data['response_count'] == data['question_count']) {
-                console.log("yuh");
                 finishQuiz();
                 return;
             }

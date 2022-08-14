@@ -1,4 +1,92 @@
-table .correct {
-  background-color: rgba(0, 255, 0, 0.3); }
-  table .wrong {
-    background-color: rgba(255, 0, 0, 0.3); }
+@keyframes entrance {
+  0% {
+    opacity: 0;   }
+    100% {
+      opacity: 1;   }
+}
+
+@keyframes bobbing {
+  0% {
+    font-size: 30px;   }
+    50% {
+      font-size: 40px;   }
+      100% {
+        font-size: 30px;   }
+}
+
+#page-layout {
+  background-color: #4567ed;
+  color: white;
+  font-family: "Bungee"; }
+
+  @media (min-width: 700px) {
+    .button {
+      width: 500px;
+      height: auto;
+      align-self: center;
+      background-image: url("NBAQuiz_images/Background.jpg");
+      background-size: 100%;
+      border-radius: 0.3rem;
+      padding: 10px;
+      font-size: 30px;
+      color: white;   }
+}
+
+@media (min-width: 500px) and (max-width: 700px) {
+  .button {
+    width: 300px;
+    height: auto;
+    align-self: center;
+    background-image: url("NBAQuiz_images/Background.jpg");
+    background-size: 100%;
+    border-radius: 0.3rem;
+    padding: 10px;
+    font-size: 30px;
+    color: white;   }
+}
+
+.heading {
+  padding-top: 200px; }
+
+  .align {
+    display: flex;
+    color: white;
+    font-size: 30px; }
+    .align table {
+      table-layout: auto;
+      width: 100%; }
+      .align table thead th {
+        padding: 10px;
+        text-align: center; }
+      .align table tbody td {
+        padding: 10px;
+        align-content: center; }
+
+#summary {
+  color: white; }
+
+  .correct {
+    color: lime; }
+
+    .wrong {
+      color: red; }
+
+      #timer {
+        font-size: 30px;
+        color: goldenrod; }
+
+        button {
+          animation-name: entrance;
+          animation-duration: 3000ms;
+          animation-fill-mode: forwards; }
+
+          #question {
+            animation-name: entrance;
+            animation-duration: 1000ms;
+            animation-fill-mode: forwards; }
+
+            .title {
+              animation-name: bobbing;
+              animation-duration: 1000ms;
+              animation-fill-mode: forwards;
+              animation-iteration-count: infinite; }

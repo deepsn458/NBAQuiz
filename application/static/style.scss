@@ -1,11 +1,137 @@
-table{
-    .correct{
-        background-color: hsla(120,100%,50%,0.3);
+//defines the standard colors
+$background-color: rgb(69, 103, 237);
+$wrong-color: hsla(0,100%,50%,1);
+$correct-color: hsla(120,100%,50%,1);
 
+//adjusts width of button if device width is less than 500px
+
+//animations for buttons: they fade into when page loads
+@keyframes entrance{
+    0% {
+        opacity: 0;
     }
-    .wrong{
-        background-color: hsla(0,100%,50%,0.3);
+    100% {
+        opacity: 1;
     }
+}
+
+//animation for bobbing of home page logo
+@keyframes bobbing {
+    0% {
+        font-size: 30px;
+    }
+
+    50% {
+        font-size: 40px;
+    }
+
+    100% {
+        font-size: 30px;
+    }
+}
+
+//general layout
+#page-layout {
+    background-color: $background-color;
+    color: white;
+    font-family: "Bungee";
+}
+
+//buttons
+@media (min-width: 700px) {
+    .button {
+        width:500px;
+        height:auto;
+        align-self: center;
+        background-image: url("NBAQuiz_images/Background.jpg");
+        background-size: 100%;
+        border-radius: 0.3rem;
+        padding: 10px;
+        font-size: 30px;
+        color: white;
+    } 
+}
+
+@media (min-width: 500px) and (max-width: 700px) {
+    .button {
+        width:300px;
+        height:auto;
+        align-self: center;
+        background-image: url("NBAQuiz_images/Background.jpg");
+        background-size: 100%;
+        border-radius: 0.3rem;
+        padding: 10px;
+        font-size: 30px;
+        color: white;
+    } 
+}
+
+// centers the content vertically
+.heading {
+    padding-top: 200px;
+}
+
+//centers the table horizontally
+.align {
+    display: flex;
+    color:white;
+    font-size: 30px;
+    table{
+        table-layout: auto;
+        width: 100%;
+        thead {
+            th {
+                padding: 10px;
+                text-align: center;
+            }
+        }
+        tbody {
+            td {
+                
+                padding: 10px;
+                align-content: center;
+            }
+        }      
+    }
+}
+
+//sets some of the colors for the results and summary tables
+#summary {
+    color: white;
+}
+.correct{
+    color: $correct-color;
+}
+.wrong{
+    color: $wrong-color;
+}
+
+//sets the size and color of the timer
+#timer {
+    font-size: 30px;
+    color: goldenrod;
+}
+
+//applies fade-in animation to buttons
+button {
+    animation-name: entrance;
+    animation-duration: 3000ms;
+    animation-fill-mode: forwards;
+}
+
+// first question also fades in when loaded
+#question {
+    animation-name: entrance;
+    animation-duration: 1000ms;
+    animation-fill-mode: forwards;
+}
+
+//applies bobbing animation to the quiz title
+.title{
+    animation-name: bobbing;
+    animation-duration: 1000ms;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
 }
 
 

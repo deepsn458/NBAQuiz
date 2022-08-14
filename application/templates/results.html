@@ -5,17 +5,19 @@
 {% endblock %}
 
 {% block main %}
-    <div>
+    <script src="{{ url_for('static', filename='results-summary.js') }}"></script>
+
+    <div class="heading">
         <h1>Your Results</h1>
     </div>
-
+    
     <!--Results of the quiz-->
-    <div>
-        <table class="table">
+    <div class="align">
+        <table>
             <thead>
                 <tr>
-                    <th scope="col">CORRECT</th>
-                    <th scope="col" class="wrong">INCORRECT</th>
+                    <th>CORRECT</th>
+                    <th>INCORRECT</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,13 +26,9 @@
             </tbody>
         </table>
     </div>
-
-    <div>
-        <!--User can navigate back to start page, or to summary page-->
+    <!--User can navigate back to start page, or to summary page-->
     <form>
-        <button type="submit" class="btn btn-light" formaction="{{ url_for('main.start') }}">Restart</button>
-        <button type="submit" class="btn btn-light" formaction="{{ url_for('Quiz.summary') }}">See Quiz Summary</button>
+        <button type="submit" class="button" formaction="{{ url_for('main.start') }}">Restart</button>
+        <button type="submit" class="button" formaction="{{ url_for('Quiz.summary') }}">See Quiz Summary</button>
     </form>
-    </div>
-
-    {% endblock %}
+{% endblock %}
