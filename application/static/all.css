@@ -1,34 +1,66 @@
-#homepage {
+@keyframes entrance {
+  0% {
+    opacity: 0;   }
+    100% {
+      opacity: 1;   }
+}
+
+@keyframes bobbing {
+  0% {
+    font-size: 30px;   }
+    50% {
+      font-size: 40px;   }
+      100% {
+        font-size: 30px;   }
+}
+
+#page-layout {
   background-color: #4567ed;
   color: white;
   font-family: "Bungee"; }
 
+  @media (min-width: 700px) {
+    .button {
+      width: 500px;
+      height: auto;
+      align-self: center;
+      background-image: url("NBAQuiz_images/Background.jpg");
+      background-size: 100%;
+      border-radius: 0.3rem;
+      padding: 10px;
+      font-size: 30px;
+      color: white;   }
+}
+
+@media (min-width: 500px) and (max-width: 700px) {
   .button {
-    width: 200px;
+    width: 300px;
     height: auto;
     align-self: center;
-    color: white; }
+    background-image: url("NBAQuiz_images/Background.jpg");
+    background-size: 100%;
+    border-radius: 0.3rem;
+    padding: 10px;
+    font-size: 30px;
+    color: white;   }
+}
 
-    .heading {
-      padding-top: 200px; }
+.heading {
+  padding-top: 200px; }
 
-      .align {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white; }
-        .align table {
-          table-layout: auto;
-          width: 100%; }
-          .align table thead th {
-            padding: 10px;
-            font-size: 30px;
-            width: 700px;
-            text-align: center; }
-          .align table tbody tr td {
-            padding: 10px;
-            align-content: center;
-            font-size: 30px; }
+  .align {
+    display: flex;
+    color: white;
+    font-size: 30px; }
+    .align table {
+      table-layout: auto;
+      width: 100%; }
+      .align table thead th {
+        padding: 10px;
+        text-align: center; }
+      .align table tbody td {
+        padding: 10px;
+        align-content: center; }
 
 #summary {
   color: white; }
@@ -41,41 +73,20 @@
 
       #timer {
         font-size: 30px;
-        color: black; }
+        color: goldenrod; }
 
-        @keyframes entrance {
-          0% {
-            opacity: 0;   }
-            100% {
-              opacity: 1;   }
-}
+        button {
+          animation-name: entrance;
+          animation-duration: 3000ms;
+          animation-fill-mode: forwards; }
 
-@keyframes bobbing {
-  0% {
-    font-size: 30px;   }
-    50% {
-      font-size: 40px;   }
-      100% {
-        font-size: 30px;   }
-}
+          #question {
+            animation-name: entrance;
+            animation-duration: 1000ms;
+            animation-fill-mode: forwards; }
 
-.title {
-  animation-name: bobbing;
-  animation-duration: 1000ms;
-  animation-fill-mode: forwards;
-  animation-iteration-count: infinite; }
-
-  input {
-    animation-name: entrance;
-    animation-duration: 3000ms;
-    animation-fill-mode: forwards; }
-
-    #question {
-      animation-name: entrance;
-      animation-duration: 500ms;
-      animation-fill-mode: forwards; }
-
-      button {
-        animation-name: entrance;
-        animation-duration: 500ms;
-        animation-fill-mode: forwards; }
+            .title {
+              animation-name: bobbing;
+              animation-duration: 1000ms;
+              animation-fill-mode: forwards;
+              animation-iteration-count: infinite; }

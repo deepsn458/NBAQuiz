@@ -38,9 +38,7 @@
     </table>
 
     <form>
-        <div class="mb-3">
-            <button type="submit" class="btn btn-light" formaction="{{ url_for('main.start') }}">Restart</button>
-            <button type="submit" class="btn btn-light" formaction="{{ url_for('main.home') }}">Home</button>
-        </div>
+        <button type="submit" class="button" formaction="{{ url_for('main.start') }}">Restart</button>
+        <button type="submit" class="button" formaction="{{ url_for('main.home') }}">Home</button>
     </form>
 {% endblock %}

@@ -6,12 +6,12 @@ $(document).ready(function() {
     let buttons = document.querySelectorAll('button');
     buttons.forEach(function(button) {
         button.addEventListener("mouseover", function() {
-            button.style.color = "red";
+            button.style.color = "goldenrod";
         })     
     })
     buttons.forEach(function(button) {
         button.addEventListener("mouseout", function() {
-            button.style.color = "black";
+            button.style.color = "white";
         })
     })
     
@@ -43,8 +43,8 @@ function shortTimer() {
 
         //timer will turn red and bob in the last 5 seconds
         if (time <= 5) {
-            document.querySelector('.title').style.color = "red";
-            document.querySelector('.title').style.animationPlayState = 'running';
+            document.querySelector('#timer').style.color = "red";
+            document.querySelector('#timer').style.animationPlayState = 'running';
         }
         //updates timer
         $("#timer").html(time);
@@ -90,7 +90,6 @@ function displayQuestions() {
 
 // sends the user's response to the responses database and gets back a new question
 function sendResponse(id) {
-    console.log($(`#${id}`).val());
     fetch(`${window.origin}/query`, {
         method: 'POST',
         headers: {
@@ -113,7 +112,6 @@ function sendResponse(id) {
         .then(function(data){
             //if all questions have been answered, user is redirected to results page
             if (data['response_count'] == data['question_count']) {
-                console.log("yuh");
                 finishQuiz();
                 return;
             }

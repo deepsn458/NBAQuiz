@@ -3,73 +3,9 @@ $background-color: rgb(69, 103, 237);
 $wrong-color: hsla(0,100%,50%,1);
 $correct-color: hsla(120,100%,50%,1);
 
-//general layout
-#homepage {
-    background-color: $background-color;
-    color: white;
-    font-family: "Bungee";
-}
+//adjusts width of button if device width is less than 500px
 
-//buttons
-.button {
-    width:200px;
-    height:auto;
-    align-self: center;
-    color:white;
-}
-
-.heading {
-    padding-top: 200px;
-}
-
-//aligns the table to the center of the page
-.align {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color:white;
-    table{
-        table-layout: auto;
-        width: 100%;
-        thead {
-            th {
-                padding: 10px;
-                font-size: 30px;
-                width: 700px;
-                text-align: center;
-            }
-        }
-        tbody {
-            tr {
-                td {
-                    padding: 10px;
-                    align-content: center;
-                    font-size: 30px;
-                }
-            }
-        }
-        
-    }
-}
-
-#summary {
-    color: white;
-}
-
-.correct{
-    color: $correct-color;
-}
-.wrong{
-    color: $wrong-color;
-}
-
-//sets the size of the timer
-#timer {
-    font-size: 30px;
-    color: black;
-}
-
-//slowly makes the play button visiblr
+//animations for buttons: they fade into when page loads
 @keyframes entrance{
     0% {
         opacity: 0;
@@ -94,29 +30,108 @@ $correct-color: hsla(120,100%,50%,1);
     }
 }
 
-.title{
-    animation-name: bobbing;
-    animation-duration: 1000ms;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-
+//general layout
+#page-layout {
+    background-color: $background-color;
+    color: white;
+    font-family: "Bungee";
 }
 
-input{
+//buttons
+@media (min-width: 700px) {
+    .button {
+        width:500px;
+        height:auto;
+        align-self: center;
+        background-image: url("NBAQuiz_images/Background.jpg");
+        background-size: 100%;
+        border-radius: 0.3rem;
+        padding: 10px;
+        font-size: 30px;
+        color: white;
+    } 
+}
+
+@media (min-width: 500px) and (max-width: 700px) {
+    .button {
+        width:300px;
+        height:auto;
+        align-self: center;
+        background-image: url("NBAQuiz_images/Background.jpg");
+        background-size: 100%;
+        border-radius: 0.3rem;
+        padding: 10px;
+        font-size: 30px;
+        color: white;
+    } 
+}
+
+// centers the content vertically
+.heading {
+    padding-top: 200px;
+}
+
+//centers the table horizontally
+.align {
+    display: flex;
+    color:white;
+    font-size: 30px;
+    table{
+        table-layout: auto;
+        width: 100%;
+        thead {
+            th {
+                padding: 10px;
+                text-align: center;
+            }
+        }
+        tbody {
+            td {
+                
+                padding: 10px;
+                align-content: center;
+            }
+        }      
+    }
+}
+
+//sets some of the colors for the results and summary tables
+#summary {
+    color: white;
+}
+.correct{
+    color: $correct-color;
+}
+.wrong{
+    color: $wrong-color;
+}
+
+//sets the size and color of the timer
+#timer {
+    font-size: 30px;
+    color: goldenrod;
+}
+
+//applies fade-in animation to buttons
+button {
     animation-name: entrance;
     animation-duration: 3000ms;
     animation-fill-mode: forwards;
 }
 
-//question and buttons fade in when loaded
-
+// first question also fades in when loaded
 #question {
     animation-name: entrance;
-    animation-duration: 500ms;
+    animation-duration: 1000ms;
     animation-fill-mode: forwards;
 }
-button {
-    animation-name: entrance;
-    animation-duration: 500ms;
+
+//applies bobbing animation to the quiz title
+.title{
+    animation-name: bobbing;
+    animation-duration: 1000ms;
     animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
 }
+
+

@@ -87,16 +87,11 @@ def results():
 
 @Quiz.route("/quiz/summary")
 def summary():
-    #Table:
-    #C1: Index
-    #C2: Question
-    #C3: Your response
-    #C4: Current Response
 
     #Stores 'Responses' table in a list
     table = []
 
-    #Each row in 'Responses' is stored in a dictionary
+    #Each row in 'Responses' is stored in a 'row' dictionary
     row_count = Responses.query.count() + 1
     for i in range(1,row_count):
         response = Responses.query.get(i)

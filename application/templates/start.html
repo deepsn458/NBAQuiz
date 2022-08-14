@@ -7,12 +7,11 @@
 {% block main %}
     <script src="{{ url_for('static', filename='start.js') }}"></script>
     <div class="heading">
-        <h2> Complete as many questions as you can in 60 Seconds!</h2>
+        <h2> Complete as many questions as you can in 25 Seconds!</h2>
         <h2>Press start when you're ready!</h2>
     </div>
+    
     <form action="{{ url_for('Quiz.quiz') }}" method="get">
-        <div class="mb-3">
-            <input class="button" type="image" src="{{ url_for('static', filename='NBAQuiz_images/start.jpg')}}" alt="click to play">
-        </div>
+        <button class="button">START!</button>
     </form>
 {% endblock %}
