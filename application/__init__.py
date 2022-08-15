@@ -13,11 +13,9 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(Config)
     # imports all the 3 blueprints
-    from application.users.routes import users
     from application.main.routes import main
     from application.quiz.routes import Quiz
     from application.errors.handlers import errors
-    app.register_blueprint(users)
     app.register_blueprint(main)
     app.register_blueprint(Quiz)
     app.register_blueprint(errors)
