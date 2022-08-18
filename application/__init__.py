@@ -16,9 +16,11 @@ def create_app(config_class=Config):
     from application.main.routes import main
     from application.quiz.routes import Quiz
     from application.errors.handlers import errors
+    from application.database.routes import database
     app.register_blueprint(main)
     app.register_blueprint(Quiz)
     app.register_blueprint(errors)
+    app.register_blueprint(database)
     # extension objects applied to each application
     db.init_app(app)
     # setting up sass compiler

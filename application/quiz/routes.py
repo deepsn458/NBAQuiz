@@ -21,15 +21,13 @@ def quiz():
 # Asynchronous queries for questions and options after button is clicked
 @Quiz.route("/query", methods=["GET", "POST"])
 def query():
-    #number of questions
+    # number of questions
     question_count = Questions.query.count()
-    #sends question to quiz page and retrieves the option
+    # sends question to quiz page and retrieves the option
     if request.method == "POST":
         response = request.get_json()
-        print(response['answer'])
-        print(response['question'])
         
-        #updates the 'Responses' table with the question and option
+        # updates the 'Responses' table with the question and option
         q = Questions.query.filter_by(question_name=response['question']).first()
         o = Options.query.filter_by(option_name=response['answer']).first()
         resp = Responses(question_id=q.id, option_id=o.id, correct_incorrect=o.correct_incorrect)
@@ -52,7 +50,6 @@ def query():
                 "response_count": response_count,
                 "question_count": question_count
             }
-            print(response_count)
             response = make_response(jsonify(req), 200)
             return response
     q.displayed = 1

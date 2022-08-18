@@ -60,6 +60,6 @@ Plan
 8) COmplete application structure (Blueprints) (Done)
 10) Strengthen JavaScript Skills  (Done)
 11) Add the necessary JS elements to enhance webpage (done)
-12) Plan and implement the styling of all the webpages
+12) Plan and implement the styling of all the webpages (done)
 13) Learn the necessary testing methods and test the functionality of the website
-14) Deployment!
+14) Deployment! (Done boiiiiii)

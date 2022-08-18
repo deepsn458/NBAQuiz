@@ -1,7 +1,6 @@
 from flask import render_template, url_for, request, redirect, flash, Blueprint
 from application.models import Questions, Responses
 from application import db
-# Forms
 
 main = Blueprint('main', __name__)
 
